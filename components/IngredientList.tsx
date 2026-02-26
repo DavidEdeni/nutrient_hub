@@ -41,6 +41,10 @@ export default function IngredientList({
           return (
             <label
               key={item.id}
+              onClick={(e) => {
+                e.preventDefault();
+                toggleItem(item.id);
+              }}
               className="flex items-start gap-4 cursor-pointer group p-2 -mx-2 rounded-xl hover:bg-gray-50 transition-colors"
             >
               <div
