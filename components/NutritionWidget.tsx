@@ -103,7 +103,7 @@ export default function NutritionWidget() {
           Unlock meal planner, shopping lists, and advanced stats.
         </p>
         <button className="w-full bg-primary hover:bg-primary-dark transition-colors py-3 rounded-xl font-bold relative z-10 flex items-center justify-center gap-2">
-          Get Zest Pro
+          Get NutrientHub Pro
         </button>
       </div>
     </div>

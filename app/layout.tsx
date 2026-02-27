@@ -15,7 +15,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Zest | AI Recipe App",
+  title: "NutrientHub | AI Recipe App",
   description: "AI-powered recipe and nutritional tracking application",
 };
 

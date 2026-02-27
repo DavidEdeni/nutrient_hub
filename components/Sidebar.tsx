@@ -19,7 +19,7 @@ export default function Sidebar() {
           <Leaf className="w-5 h-5 text-white" />
         </div>
         <span className="font-serif font-bold text-2xl tracking-tight text-gray-900">
-          Zest
+          NutrientHub
         </span>
       </div>
 
