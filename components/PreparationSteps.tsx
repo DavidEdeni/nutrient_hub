@@ -6,7 +6,13 @@ interface Step {
   description: string;
 }
 
-export default function PreparationSteps({ steps, tip }: { steps: Step[]; tip?: string }) {
+export default function PreparationSteps({
+  steps,
+  tip,
+}: {
+  steps: Step[];
+  tip?: string;
+}) {
   return (
     <div className="space-y-8">
       <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
@@ -36,11 +42,11 @@ export default function PreparationSteps({ steps, tip }: { steps: Step[]; tip?: 
           <div className="flex items-center gap-2 mb-3">
             <Lightbulb className="w-5 h-5 text-primary" />
             <h4 className="font-bold text-primary text-sm tracking-wide uppercase">
-              Chef's Tip
+              Chef&apos;s Tip
             </h4>
           </div>
           <p className="text-primary/90 italic font-serif leading-relaxed text-sm">
-            "{tip}"
+            &quot;{tip}&quot;
           </p>
         </div>
       )}

@@ -7,7 +7,6 @@ import {
   CheckCircle2,
   Circle,
   Leaf,
-  Sparkles,
 } from "lucide-react";
 
 export default function Sidebar() {
@@ -114,7 +113,7 @@ export default function Sidebar() {
         <div className="bg-green-50 rounded-2xl p-4 border border-green-100 mb-6">
           <p className="font-bold text-gray-900 text-sm mb-1">Weekly Goal</p>
           <p className="text-xs text-gray-600 mb-3">
-            You've cooked 4/7 plant-based meals this week!
+            You&apos;ve cooked 4/7 plant-based meals this week!
           </p>
           <div className="h-2 w-full bg-green-100 rounded-full overflow-hidden">
             <div
