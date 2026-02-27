@@ -25,8 +25,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
-      <body className="font-sans antialiased bg-gray-50 text-gray-900 overflow-hidden h-screen flex">
+    <html
+      lang="en"
+      className={`${playfair.variable} ${dmSans.variable}`}
+      suppressHydrationWarning
+    >
+      <body
+        className="font-sans antialiased bg-gray-50 text-gray-900 overflow-hidden h-screen flex"
+        suppressHydrationWarning
+      >
         {/* Left Sidebar */}
         <Sidebar />
 
