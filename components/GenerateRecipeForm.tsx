@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Lightbulb, Loader2 } from "lucide-react";
 import type { GeneratedRecipe } from "../src/lib/ai/recipeSchema";
 import RecipeCard from "./RecipeCard";
@@ -10,6 +10,16 @@ export default function GenerateRecipeForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [generatedRecipe, setGeneratedRecipe] = useState<GeneratedRecipe | null>(null);
   const [error, setError] = useState("");
+  const abortControllerRef = useRef<AbortController | null>(null);
+
+  // Cleanup on unmount to prevent state updates on unmounted components
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +29,12 @@ export default function GenerateRecipeForm() {
     setError("");
     setGeneratedRecipe(null);
 
+    // Cancel any ongoing request before starting a new one
+    if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
+
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -26,6 +42,7 @@ export default function GenerateRecipeForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ prompt }),
+        signal: abortControllerRef.current.signal,
       });
 
       if (!response.ok) {
