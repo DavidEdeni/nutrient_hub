@@ -1,0 +1,23 @@
+
+> temp-app@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 6.6s
+  Running TypeScript ...
+Failed to compile.
+
+./src/app/api/generate/route.ts:3:30
+Type error: Cannot find module '@/lib/ai/recipeSchema' or its corresponding type declarations.
+
+  1 | import { generateObject } from 'ai';
+  2 | import { google } from '@ai-sdk/google';
+> 3 | import { recipeSchema } from '@/lib/ai/recipeSchema';
+    |                              ^
+  4 |
+  5 | // Allow responses up to 60 seconds
+  6 | export const maxDuration = 60;
+Next.js build worker exited with code: 1 and signal: null

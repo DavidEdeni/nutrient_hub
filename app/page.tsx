@@ -1,5 +1,6 @@
-import RecipeCard from "@/components/RecipeCard";
-import NutritionWidget from "@/components/NutritionWidget";
+import RecipeCard from "../components/RecipeCard";
+import NutritionWidget from "../components/NutritionWidget";
+import GenerateRecipeForm from "../components/GenerateRecipeForm";
 import { Lightbulb } from "lucide-react";
 
 export default function Home() {
@@ -71,6 +72,11 @@ export default function Home() {
         
         {/* Main Feed */}
         <div className="xl:col-span-2 space-y-12">
+          {/* AI Generation Form */}
+          <section>
+            <GenerateRecipeForm />
+          </section>
+
           {/* Hero Recipe */}
           <section>
             <RecipeCard
