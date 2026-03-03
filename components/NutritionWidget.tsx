@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { TrendingUp, Plus } from "lucide-react";
 
 export default function NutritionWidget() {
@@ -66,7 +67,7 @@ export default function NutritionWidget() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <img src="https://i.pravatar.cc/150?u=ex1" className="w-10 h-10 rounded-full bg-gray-100" />
+              <img src="https://i.pravatar.cc/150?u=ex1" alt="Dr. James Chen Profile" className="w-10 h-10 rounded-full bg-gray-100" />
               <div>
                 <p className="text-sm font-bold text-gray-900">Dr. James Chen</p>
                 <p className="text-xs text-gray-500">Plant-Based Specialist</p>
@@ -79,7 +80,7 @@ export default function NutritionWidget() {
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <img src="https://i.pravatar.cc/150?u=ex2" className="w-10 h-10 rounded-full bg-gray-100" />
+              <img src="https://i.pravatar.cc/150?u=ex2" alt="Elena Rodriguez Profile" className="w-10 h-10 rounded-full bg-gray-100" />
               <div>
                 <p className="text-sm font-bold text-gray-900">Elena Rodriguez</p>
                 <p className="text-xs text-gray-500">Keto Diet Coach</p>

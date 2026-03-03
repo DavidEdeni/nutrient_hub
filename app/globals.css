@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #22c55e;
-  --color-primary-dark: #16a34a;
-  --color-background-offwhite: #f9fafb;
-  --font-sans: var(--font-dm-sans), "ui-sans-serif", "system-ui", "sans-serif";
-  --font-serif: var(--font-playfair), "ui-serif", "Georgia", "serif";
+  --color-primary: #00d138;
+  --color-primary-dark: #00a62c;
+  --color-background-offwhite: #f8fafc;
+  --color-sidebar-bg: #f9fafb;
+  --font-sans:
+    var(--font-inter), "Inter", "ui-sans-serif", "system-ui", "sans-serif";
 }
 
 @custom-variant dark (&:is(.dark *));

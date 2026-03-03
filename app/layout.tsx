@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -27,11 +22,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${dmSans.variable}`}
+      className={`${inter.variable}`}
       suppressHydrationWarning
     >
       <body
-        className="font-sans antialiased bg-gray-50 text-gray-900 overflow-hidden h-screen flex"
+        className="font-sans antialiased bg-[#F8FAFC] text-gray-900 overflow-hidden h-screen flex"
         suppressHydrationWarning
       >
         {/* Left Sidebar */}

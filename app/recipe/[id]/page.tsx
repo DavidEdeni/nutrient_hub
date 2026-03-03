@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Clock, Users, Star, Bookmark, ShoppingBag, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import IngredientList from "@/components/IngredientList";

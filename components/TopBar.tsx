@@ -1,38 +1,32 @@
-import { Search, Bell } from "lucide-react";
+import { Search, Bell, Settings } from "lucide-react";
 
 export default function TopBar() {
   return (
-    <header className="h-20 bg-white/80 backdrop-blur-md border-b border-gray-100 flex items-center justify-between px-8 sticky top-0 z-30">
-      {/* Search */}
-      <div className="flex-1 max-w-xl relative">
-        <Search className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
-        <input
-          type="text"
-          placeholder="Search recipes, ingredients, or dietary goals..."
-          className="w-full bg-gray-50 border-none rounded-full py-2.5 pl-12 pr-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-        />
+    <header className="h-20 bg-transparent flex items-center justify-between px-8 sticky top-0 z-30 w-full mt-4">
+      {/* Spacer for Flex Alignment */}
+      <div className="flex-1"></div>
+
+      {/* Centered Pill Search */}
+      <div className="flex-1 max-w-2xl relative flex justify-center">
+        <div className="relative w-full shadow-sm rounded-full bg-white border border-gray-100 flex items-center px-4 py-2.5 transition-all focus-within:ring-2 focus-within:ring-primary/20">
+            <Search className="w-5 h-5 text-gray-400 mr-3" />
+            <input
+            type="text"
+            placeholder="Search recipes, ingredients, or dietary goals..."
+            className="w-full bg-transparent border-none text-sm font-medium outline-none text-gray-800 placeholder:text-gray-400"
+            />
+        </div>
       </div>
 
-      {/* User Actions */}
-      <div className="flex items-center gap-6 ml-8">
-        <button className="relative p-2 text-gray-500 hover:text-gray-900 transition-colors">
-          <Bell className="w-6 h-6" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+      {/* User Actions Right Aligned */}
+      <div className="flex-1 flex justify-end items-center gap-4">
+        <button className="relative p-2.5 bg-white rounded-full text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 transition-colors">
+          <Bell className="w-5 h-5" />
+          <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
         </button>
-
-        <div className="flex items-center gap-3 pl-6 border-l border-gray-100">
-          <div className="text-right hidden sm:block">
-            <p className="text-sm font-bold text-gray-900 leading-tight">
-              Sarah Miller
-            </p>
-            <p className="text-xs text-primary font-medium">Premium Member</p>
-          </div>
-          <img
-            src="https://i.pravatar.cc/150?u=sarah"
-            alt="Sarah Miller"
-            className="w-10 h-10 rounded-full object-cover border-2 border-primary/20"
-          />
-        </div>
+        <button className="relative p-2.5 bg-white rounded-full text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 transition-colors">
+          <Settings className="w-5 h-5" />
+        </button>
       </div>
     </header>
   );

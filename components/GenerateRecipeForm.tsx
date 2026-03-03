@@ -34,8 +34,16 @@ export default function GenerateRecipeForm() {
 
       const data = await response.json();
       setGeneratedRecipe(data);
-    } catch (err: any) {
-      setError(err.message || "An error occurred.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+          if (err.name === "AbortError") {
+              console.log("Fetch aborted");
+              return;
+          }
+          setError(err.message || "An error occurred.");
+      } else {
+          setError("An unexpected error occurred.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -51,7 +59,7 @@ export default function GenerateRecipeForm() {
           <Lightbulb className="w-6 h-6 text-primary" />
           AI Chef 
         </h2>
-        <p className="text-gray-500 mb-6 relative z-10">Describe what you're craving, what ingredients you have, or your dietary goals.</p>
+        <p className="text-gray-500 mb-6 relative z-10">Describe what you&apos;re craving, what ingredients you have, or your dietary goals.</p>
         
         <div className="flex flex-col md:flex-row gap-4 relative z-10">
           <input

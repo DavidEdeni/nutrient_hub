@@ -1,7 +1,7 @@
 import RecipeCard from "../components/RecipeCard";
 import NutritionWidget from "../components/NutritionWidget";
 import GenerateRecipeForm from "../components/GenerateRecipeForm";
-import { Lightbulb } from "lucide-react";
+import { Lightbulb, Settings2 } from "lucide-react";
 
 export default function Home() {
   const recipes = [
@@ -66,15 +66,46 @@ export default function Home() {
     },
   ];
 
+  const categories = [
+    "All Recipes",
+    "High Protein",
+    "Under 30 Mins",
+    "Keto",
+    "Vegan",
+    "Meal Prep",
+    "Desserts",
+  ];
+
   return (
     <div className="p-8 pb-32">
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+      <div className="flex flex-col xl:flex-row gap-10">
         
-        {/* Main Feed */}
-        <div className="xl:col-span-2 space-y-12">
+        {/* Main Feed Content */}
+        <div className="flex-1 max-w-5xl space-y-12">
+          
           {/* AI Generation Form */}
           <section>
             <GenerateRecipeForm />
+          </section>
+
+          {/* Category Filters */}
+          <section className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
+            {categories.map((category, i) => (
+              <button
+                key={category}
+                className={`px-5 py-2 whitespace-nowrap rounded-full text-sm font-bold transition-all ${
+                  i === 0
+                    ? "bg-primary text-white shadow-sm"
+                    : "bg-white text-gray-600 border border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+            <button className="px-5 py-2 whitespace-nowrap rounded-full text-sm font-bold bg-white text-gray-600 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 flex items-center gap-2">
+              <Settings2 className="w-4 h-4" />
+              More Filters
+            </button>
           </section>
 
           {/* Hero Recipe */}
@@ -93,65 +124,58 @@ export default function Home() {
 
           {/* Recommended Feed */}
           <section>
-            <div className="flex items-end justify-between mb-6">
+            <div className="flex items-end justify-between mb-8">
               <div>
-                <h2 className="font-serif font-bold text-2xl text-gray-900 mb-1">
+                <h2 className="font-bold text-3xl text-gray-900 mb-2 tracking-tight">
                   Recommended for You
                 </h2>
                 <p className="text-gray-500 text-sm">
                   Based on your dietary preferences and recent activity
                 </p>
               </div>
-              <div className="bg-white border border-gray-200 rounded-lg p-1 flex gap-1 shadow-sm">
-                <button className="px-4 py-1.5 text-sm font-bold text-gray-900 bg-gray-100 rounded-md shadow-sm">
-                  Latest
-                </button>
-                <button className="px-4 py-1.5 text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors">
-                  Popular
-                </button>
-              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Strict 2 Column Layout Matching Reference */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {recipes.map((recipe) => (
                 <RecipeCard key={recipe.id} {...recipe} />
               ))}
               
               {/* Call to action card */}
-              <div className="bg-primary rounded-2xl p-8 text-white flex flex-col justify-center relative overflow-hidden group shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+              <div className="bg-primary rounded-2xl p-8 text-white flex flex-col justify-center relative overflow-hidden group shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300 min-h-[400px]">
                 <div className="absolute -top-10 -right-10 text-white/10 group-hover:text-white/20 transition-colors">
                   <Lightbulb className="w-40 h-40" />
                 </div>
                 <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-6">
                   <Lightbulb className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif font-bold text-2xl mb-4 leading-tight">
+                <h3 className="font-bold text-3xl mb-4 leading-tight tracking-tight">
                   Want more personalized suggestions?
                 </h3>
-                <p className="text-white/80 text-sm mb-8 leading-relaxed">
+                <p className="text-white/90 text-sm mb-8 leading-relaxed max-w-sm">
                   Tell us more about your health goals and favorite cuisines for a custom-tailored weekly meal plan.
                 </p>
-                <button className="bg-white text-primary font-bold py-3 px-6 rounded-full mt-auto hover:bg-gray-50 transition-colors w-full shadow-sm">
+                <button className="bg-white text-primary font-bold py-3.5 px-6 rounded-full mt-auto hover:bg-gray-50 transition-colors w-full shadow-sm text-center">
                   Update Diet Profile
                 </button>
               </div>
             </div>
             
-            <div className="mt-12 text-center">
-              <button className="px-8 py-3 bg-white border border-primary/20 text-primary font-bold rounded-full hover:bg-green-50 transition-colors shadow-sm">
+            <div className="mt-12 flex justify-center">
+              <button className="px-8 py-3.5 bg-white border border-gray-200 text-gray-600 font-bold rounded-full hover:bg-gray-50 transition-colors shadow-sm w-full md:w-auto">
                 Load More Recipes
               </button>
-              <p className="text-xs text-gray-400 mt-4">Showing 18 of 2,450 recipes</p>
             </div>
           </section>
         </div>
 
         {/* Right Sidebar - Widgets */}
-        <div className="xl:col-span-1">
+        <div className="w-full xl:w-80 flex-shrink-0">
           <div className="sticky top-28 space-y-6">
             <NutritionWidget />
           </div>
         </div>
+        
       </div>
     </div>
   );

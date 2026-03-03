@@ -3,125 +3,89 @@ import {
   Compass,
   Heart,
   BookOpen,
-  ShoppingCart,
-  CheckCircle2,
-  Circle,
+  Calendar,
+  Settings,
   Leaf,
+  Plus
 } from "lucide-react";
 
 export default function Sidebar() {
   return (
-    <aside className="w-64 bg-white border-r border-gray-100 flex flex-col h-full overflow-y-auto">
-      {/* Logo */}
-      <div className="p-6 flex items-center gap-2">
-        <div className="bg-primary p-1.5 rounded-lg flex items-center justify-center">
-          <Leaf className="w-5 h-5 text-white" />
+    <aside className="w-72 bg-gray-50/50 border-r border-gray-100 flex flex-col h-full overflow-y-auto">
+      {/* Logo & Profile */}
+      <div className="p-6 pb-2">
+        <div className="flex items-center gap-2 mb-8">
+          <div className="bg-primary p-1.5 rounded-lg flex items-center justify-center">
+            <Leaf className="w-5 h-5 text-white" />
+          </div>
+          <span className="font-serif font-bold text-2xl tracking-tight text-gray-900">
+            NutrientHub
+          </span>
         </div>
-        <span className="font-serif font-bold text-2xl tracking-tight text-gray-900">
-          NutrientHub
-        </span>
+        
+        <div className="flex items-center gap-3 mb-6 p-3 rounded-2xl hover:bg-white transition-colors cursor-pointer group">
+          <div className="w-12 h-12 rounded-full bg-green-100 text-primary font-bold text-lg flex items-center justify-center">
+            SM
+          </div>
+          <div>
+            <p className="font-bold text-gray-900 group-hover:text-primary transition-colors">Sarah Miller</p>
+            <p className="text-xs text-gray-500">Weight Loss Goal</p>
+          </div>
+        </div>
       </div>
 
-      <div className="flex-1 px-4 space-y-8">
+      <div className="flex-1 px-4 flex flex-col">
         {/* Main Menu */}
-        <div>
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4 px-2">
-            Main Menu
-          </p>
-          <nav className="space-y-1">
+        <nav className="space-y-1 mb-8">
+          <Link
+            href="/"
+            className="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-2xl font-bold"
+          >
+            <Compass className="w-5 h-5" strokeWidth={2.5} />
+            Discover
+          </Link>
+          <Link
+            href="#"
+            className="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-white rounded-2xl font-medium transition-all"
+          >
+            <Calendar className="w-5 h-5" />
+            Meal Plan
+          </Link>
+          <Link
+            href="#"
+            className="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-white rounded-2xl font-medium transition-all"
+          >
+            <Heart className="w-5 h-5" />
+            Favorites
+          </Link>
+          <Link
+            href="#"
+            className="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-white rounded-2xl font-medium transition-all"
+          >
+            <BookOpen className="w-5 h-5" />
+            Cookbooks
+          </Link>
+        </nav>
+
+        {/* Preferences */}
+        <nav className="space-y-1 mt-auto mb-4">
             <Link
-              href="/"
-              className="flex items-center gap-3 px-3 py-2 bg-primary text-white rounded-xl font-medium"
+                href="#"
+                className="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-gray-900 hover:bg-white rounded-2xl font-medium transition-all border border-transparent"
             >
-              <Compass className="w-5 h-5" />
-              Discover
+                <Settings className="w-5 h-5" />
+                Settings
             </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-xl font-medium transition-colors"
-            >
-              <Heart className="w-5 h-5" />
-              Favorites
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-xl font-medium transition-colors"
-            >
-              <BookOpen className="w-5 h-5" />
-              My Cookbooks
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-xl font-medium transition-colors"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              Grocery List
-            </Link>
-          </nav>
+        </nav>
+
+        {/* Action Button */}
+        <div className="p-4 mb-4">
+            <button className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-2xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2">
+                <Plus className="w-5 h-5" strokeWidth={3} />
+                Plan for Tomorrow
+            </button>
         </div>
 
-        {/* Meal Type */}
-        <div>
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4 px-2">
-            Meal Type
-          </p>
-          <div className="space-y-2 px-1">
-            <label className="flex items-center gap-3 cursor-pointer group">
-              <Circle className="w-5 h-5 text-gray-300 group-hover:text-primary transition-colors" />
-              <span className="text-gray-600 font-medium">Breakfast</span>
-            </label>
-            <label className="flex items-center gap-3 cursor-pointer group">
-              <CheckCircle2 className="w-5 h-5 text-primary" />
-              <span className="text-gray-900 font-medium">Lunch</span>
-            </label>
-            <label className="flex items-center gap-3 cursor-pointer group">
-              <CheckCircle2 className="w-5 h-5 text-primary" />
-              <span className="text-gray-900 font-medium">Dinner</span>
-            </label>
-            <label className="flex items-center gap-3 cursor-pointer group">
-              <Circle className="w-5 h-5 text-gray-300 group-hover:text-primary transition-colors" />
-              <span className="text-gray-600 font-medium">Snacks & Sides</span>
-            </label>
-          </div>
-        </div>
-
-        {/* Dietary Goals */}
-        <div>
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4 px-2">
-            Dietary Goals
-          </p>
-          <div className="flex flex-wrap gap-2 px-1">
-            <span className="px-3 py-1 bg-green-50 text-primary border border-green-200 rounded-full text-xs font-semibold cursor-pointer">
-              Vegan
-            </span>
-            <span className="px-3 py-1 bg-gray-50 text-gray-600 border border-gray-200 rounded-full text-xs font-medium cursor-pointer hover:bg-gray-100 transition-colors">
-              Keto
-            </span>
-            <span className="px-3 py-1 bg-gray-50 text-gray-600 border border-gray-200 rounded-full text-xs font-medium cursor-pointer hover:bg-gray-100 transition-colors">
-              Paleo
-            </span>
-            <span className="px-3 py-1 bg-green-50 text-primary border border-green-200 rounded-full text-xs font-semibold cursor-pointer">
-              Gluten-Free
-            </span>
-            <span className="px-3 py-1 bg-gray-50 text-gray-600 border border-gray-200 rounded-full text-xs font-medium cursor-pointer hover:bg-gray-100 transition-colors">
-              Low Carb
-            </span>
-          </div>
-        </div>
-
-        {/* Weekly Goal Progress */}
-        <div className="bg-green-50 rounded-2xl p-4 border border-green-100 mb-6">
-          <p className="font-bold text-gray-900 text-sm mb-1">Weekly Goal</p>
-          <p className="text-xs text-gray-600 mb-3">
-            You&apos;ve cooked 4/7 plant-based meals this week!
-          </p>
-          <div className="h-2 w-full bg-green-100 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-primary rounded-full transition-all duration-500 ease-in-out"
-              style={{ width: "57%" }}
-            ></div>
-          </div>
-        </div>
       </div>
     </aside>
   );
