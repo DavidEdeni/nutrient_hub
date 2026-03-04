@@ -126,6 +126,53 @@ export default function Home() {
       rating: "4.7",
       ratingCount: "1.8k",
     },
+    {
+      id: "6",
+      title: "Lemon Herb Roasted Chicken with Root Vegetables",
+      image:
+        "https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?q=80&w=600&auto=format&fit=crop",
+      time: "45 min",
+      calories: "620 kcal",
+      type: "Main Course",
+      dietaryTag: "High Protein",
+      rating: "4.8",
+      ratingCount: "3.1k",
+    },
+    {
+      id: "7",
+      title: "Quinoa and Black Bean Stuffed Bell Peppers",
+      image:
+        "https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?q=80&w=600&auto=format&fit=crop",
+      time: "35 min",
+      calories: "410 kcal",
+      type: "Dinner",
+      dietaryTag: "Vegetarian",
+      rating: "4.6",
+      ratingCount: "950",
+    },
+    {
+      id: "8",
+      title: "Avocado Toast with Smashed Chickpeas",
+      image:
+        "https://images.unsplash.com/photo-1588137378633-ceaa8ba4e892?q=80&w=600&auto=format&fit=crop",
+      time: "15 min",
+      calories: "350 kcal",
+      type: "Breakfast",
+      dietaryTag: "Vegan",
+      rating: "4.9",
+      ratingCount: "4.2k",
+    },
+    {
+      id: "9",
+      title: "Garlic Butter Shrimp Zucchini Noodles",
+      image:
+        "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?q=80&w=600&auto=format&fit=crop",
+      time: "20 min",
+      calories: "390 kcal",
+      type: "Main Course",
+      dietaryTag: "Keto",
+      authorIcon: <Lightbulb className="w-4 h-4 text-yellow-500" />,
+    },
   ];
 
   const categories = [
