@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Compass, Heart, BookOpen, Calendar, Leaf, Plus } from "lucide-react";
+import { Compass, Heart, BookOpen, Calendar, Leaf } from "lucide-react";
 
 export default function Sidebar() {
   return (
@@ -48,14 +48,6 @@ export default function Sidebar() {
             Cookbooks
           </Link>
         </nav>
-
-        {/* Action Button */}
-        <div className="mt-auto p-4 mb-4">
-          <button className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-2xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2">
-            <Plus className="w-5 h-5" strokeWidth={3} />
-            Plan for Tomorrow
-          </button>
-        </div>
       </div>
     </aside>
   );

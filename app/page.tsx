@@ -145,7 +145,7 @@ export default function Home() {
         <div className="flex-1 hidden md:block"></div>
 
         {/* Centered Pill Search Form for AI Generation */}
-        <div className="flex-[2] md:flex-1 max-w-2xl relative flex justify-center w-full">
+        <div className="flex-[2] md:flex-1 max-w-4xl relative flex justify-center w-full">
           <form
             onSubmit={handleGenerate}
             className="relative w-full shadow-sm rounded-full bg-white border border-gray-100 flex items-center px-4 py-2.5 transition-all focus-within:ring-2 focus-within:ring-[#00E676]/30"
