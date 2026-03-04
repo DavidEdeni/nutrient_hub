@@ -230,26 +230,6 @@ export default function Home() {
             {recipes.map((recipe) => (
               <RecipeCard key={recipe.id} {...recipe} />
             ))}
-
-            {/* Call to action card */}
-            <div className="bg-[#00E676] rounded-2xl p-8 text-white flex flex-col justify-center relative overflow-hidden group shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300 min-h-[400px]">
-              <div className="absolute -top-10 -right-10 text-white/10 group-hover:text-white/20 transition-colors">
-                <Lightbulb className="w-40 h-40" />
-              </div>
-              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-6">
-                <Lightbulb className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-3xl mb-4 leading-tight tracking-tight">
-                Want more personalized suggestions?
-              </h3>
-              <p className="text-white/90 text-sm mb-8 leading-relaxed max-w-sm">
-                Tell us more about your health goals and favorite cuisines for a
-                custom-tailored weekly meal plan.
-              </p>
-              <button className="bg-white text-[#00E676] font-bold py-3.5 px-6 rounded-full mt-auto hover:bg-gray-50 transition-colors w-full shadow-sm text-center">
-                Update Diet Profile
-              </button>
-            </div>
           </div>
 
           <div className="mt-12 flex justify-center">
