@@ -1,4 +1,4 @@
-import { Search, Bell } from "lucide-react";
+import { Search } from "lucide-react";
 
 export default function TopBar() {
   return (
@@ -19,12 +19,7 @@ export default function TopBar() {
       </div>
 
       {/* User Actions Right Aligned */}
-      <div className="flex-1 flex justify-end items-center gap-4">
-        <button className="relative p-2.5 bg-white rounded-full text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 transition-colors">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-        </button>
-      </div>
+      <div className="flex-1 flex justify-end items-center gap-4"></div>
     </header>
   );
 }
