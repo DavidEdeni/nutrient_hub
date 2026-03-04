@@ -202,10 +202,10 @@ export default function Home() {
           {/* Recommended Feed Header */}
           <div>
             <h2 className="font-bold text-3xl text-gray-900 mb-2 tracking-tight">
-              Recommended for You
+              Recipe List
             </h2>
             <p className="text-gray-500 text-sm mb-6">
-              Based on your maintain weight goal and keto preferences.
+              Browse this collection of healthy and delicious recipes.
             </p>
 
             {/* Category Filters */}
