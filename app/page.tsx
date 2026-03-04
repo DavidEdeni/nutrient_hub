@@ -153,8 +153,7 @@ export default function Home() {
     {
       id: "8",
       title: "Avocado Toast with Smashed Chickpeas",
-      image:
-        "https://images.unsplash.com/photo-1588137378633-ceaa8ba4e892?q=80&w=600&auto=format&fit=crop",
+      image: "/images/avocado_toast_chickpeas.png",
       time: "15 min",
       calories: "350 kcal",
       type: "Breakfast",
