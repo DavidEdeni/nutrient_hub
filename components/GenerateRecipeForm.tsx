@@ -46,7 +46,16 @@ export default function GenerateRecipeForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to generate recipe.");
+        let errorMessage = "Failed to generate recipe.";
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage = errorData.error;
+          }
+        } catch {
+          // Keep default message if response isn't JSON
+        }
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
