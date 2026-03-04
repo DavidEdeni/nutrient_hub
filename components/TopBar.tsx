@@ -1,4 +1,4 @@
-import { Search, Bell, Settings } from "lucide-react";
+import { Search, Bell } from "lucide-react";
 
 export default function TopBar() {
   return (
@@ -9,12 +9,12 @@ export default function TopBar() {
       {/* Centered Pill Search */}
       <div className="flex-1 max-w-2xl relative flex justify-center">
         <div className="relative w-full shadow-sm rounded-full bg-white border border-gray-100 flex items-center px-4 py-2.5 transition-all focus-within:ring-2 focus-within:ring-primary/20">
-            <Search className="w-5 h-5 text-gray-400 mr-3" />
-            <input
+          <Search className="w-5 h-5 text-gray-400 mr-3" />
+          <input
             type="text"
             placeholder="Search recipes, ingredients, or dietary goals..."
             className="w-full bg-transparent border-none text-sm font-medium outline-none text-gray-800 placeholder:text-gray-400"
-            />
+          />
         </div>
       </div>
 
@@ -23,9 +23,6 @@ export default function TopBar() {
         <button className="relative p-2.5 bg-white rounded-full text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 transition-colors">
           <Bell className="w-5 h-5" />
           <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-        </button>
-        <button className="relative p-2.5 bg-white rounded-full text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 transition-colors">
-          <Settings className="w-5 h-5" />
         </button>
       </div>
     </header>

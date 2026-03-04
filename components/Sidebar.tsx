@@ -1,13 +1,5 @@
 import Link from "next/link";
-import {
-  Compass,
-  Heart,
-  BookOpen,
-  Calendar,
-  Settings,
-  Leaf,
-  Plus
-} from "lucide-react";
+import { Compass, Heart, BookOpen, Calendar, Leaf, Plus } from "lucide-react";
 
 export default function Sidebar() {
   return (
@@ -21,16 +13,6 @@ export default function Sidebar() {
           <span className="font-serif font-bold text-2xl tracking-tight text-gray-900">
             NutrientHub
           </span>
-        </div>
-        
-        <div className="flex items-center gap-3 mb-6 p-3 rounded-2xl hover:bg-white transition-colors cursor-pointer group">
-          <div className="w-12 h-12 rounded-full bg-green-100 text-primary font-bold text-lg flex items-center justify-center">
-            SM
-          </div>
-          <div>
-            <p className="font-bold text-gray-900 group-hover:text-primary transition-colors">Sarah Miller</p>
-            <p className="text-xs text-gray-500">Weight Loss Goal</p>
-          </div>
         </div>
       </div>
 
@@ -67,25 +49,13 @@ export default function Sidebar() {
           </Link>
         </nav>
 
-        {/* Preferences */}
-        <nav className="space-y-1 mt-auto mb-4">
-            <Link
-                href="#"
-                className="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-gray-900 hover:bg-white rounded-2xl font-medium transition-all border border-transparent"
-            >
-                <Settings className="w-5 h-5" />
-                Settings
-            </Link>
-        </nav>
-
         {/* Action Button */}
-        <div className="p-4 mb-4">
-            <button className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-2xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2">
-                <Plus className="w-5 h-5" strokeWidth={3} />
-                Plan for Tomorrow
-            </button>
+        <div className="mt-auto p-4 mb-4">
+          <button className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-2xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2">
+            <Plus className="w-5 h-5" strokeWidth={3} />
+            Plan for Tomorrow
+          </button>
         </div>
-
       </div>
     </aside>
   );
