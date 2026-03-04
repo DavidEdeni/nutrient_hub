@@ -1,9 +1,70 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
 import RecipeCard from "../components/RecipeCard";
-import NutritionWidget from "../components/NutritionWidget";
-import GenerateRecipeForm from "../components/GenerateRecipeForm";
-import { Lightbulb, Settings2 } from "lucide-react";
+import { Lightbulb, Search, Bell, Settings, Loader2 } from "lucide-react";
+import type { GeneratedRecipe } from "../src/lib/ai/recipeSchema";
 
 export default function Home() {
+  const [prompt, setPrompt] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [generatedRecipe, setGeneratedRecipe] = useState<GeneratedRecipe | null>(null);
+  const [error, setError] = useState("");
+  const abortControllerRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
+
+  const handleGenerate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!prompt.trim()) return;
+
+    setIsLoading(true);
+    setError("");
+    setGeneratedRecipe(null);
+
+    // Cancel any ongoing request before starting a new one
+    if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
+
+    try {
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt }),
+        signal: abortControllerRef.current.signal,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to generate recipe.");
+      }
+
+      const data = await response.json();
+      setGeneratedRecipe(data);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+          if (err.name === "AbortError") {
+              console.log("Fetch aborted");
+              return;
+          }
+          setError(err.message || "An error occurred.");
+      } else {
+          setError("An unexpected error occurred.");
+      }
+    } finally {
+      setIsLoading(false);
+      setPrompt(""); // Clear search bar on success/completion
+    }
+  };
   const recipes = [
     {
       id: "1",
@@ -77,63 +138,98 @@ export default function Home() {
   ];
 
   return (
-    <div className="p-8 pb-32">
-      <div className="flex flex-col xl:flex-row gap-10">
+    <>
+      <header className="h-20 bg-transparent flex items-center justify-between px-8 sticky top-0 z-30 w-full lg:mt-4">
+        {/* Spacer for Flex Alignment */}
+        <div className="flex-1 hidden md:block"></div>
+
+        {/* Centered Pill Search Form for AI Generation */}
+        <div className="flex-[2] md:flex-1 max-w-2xl relative flex justify-center w-full">
+          <form 
+            onSubmit={handleGenerate}
+            className="relative w-full shadow-sm rounded-full bg-white border border-gray-100 flex items-center px-4 py-2.5 transition-all focus-within:ring-2 focus-within:ring-[#00E676]/30"
+          >
+              <Search className="w-5 h-5 text-gray-400 mr-3 shrink-0" />
+              <input
+                type="text"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                disabled={isLoading}
+                placeholder="Type ingredients you have (e.g. chicken, avocado)..."
+                className="w-full bg-transparent border-none text-sm font-medium outline-none text-gray-800 placeholder:text-gray-400 disabled:opacity-50"
+              />
+              {isLoading && <Loader2 className="w-5 h-5 animate-spin text-[#00E676] absolute right-4" />}
+          </form>
+        </div>
+
+        {/* User Actions Right Aligned */}
+        <div className="flex-1 flex justify-end items-center gap-4">
+          <button className="relative p-2.5 bg-white rounded-full text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 transition-colors hidden sm:block">
+            <Bell className="w-5 h-5" />
+            <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+          </button>
+          <button className="relative p-2.5 bg-white rounded-full text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 transition-colors hidden sm:block">
+            <Settings className="w-5 h-5" />
+          </button>
+        </div>
+      </header>
+
+      <div className="p-8 pb-32 max-w-5xl relative">
+        <div className="space-y-8">
+        
+        {/* Validation Errors */}
+        {error && (
+            <div className="p-4 bg-red-50 text-red-600 rounded-2xl text-sm font-medium border border-red-100">
+                {error}
+            </div>
+        )}
+
+        {/* AI Generation Result Block */}
+        {generatedRecipe && (
+          <div className="animate-in fade-in slide-in-from-top-4 duration-500 mb-12">
+            <h2 className="font-bold text-2xl text-gray-900 mb-6 flex items-center gap-2">
+                <Lightbulb className="w-6 h-6 text-[#00E676]" />
+                Your AI Chef Creation
+            </h2>
+            <RecipeCard
+              id="generated"
+              title={generatedRecipe.title}
+              image="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop" // Temporary placeholder
+              time={generatedRecipe.time}
+              calories={generatedRecipe.calories}
+              type={generatedRecipe.type}
+              dietaryTag={generatedRecipe.dietaryTags[0] || "Custom Blend"}
+              isLarge={true}
+            />
+          </div>
+        )}
         
         {/* Main Feed Content */}
-        <div className="flex-1 max-w-5xl space-y-12">
-          
-          {/* AI Generation Form */}
-          <section>
-            <GenerateRecipeForm />
-          </section>
+        {/* Recommended Feed Header */}
+        <div>
+          <h2 className="font-bold text-3xl text-gray-900 mb-2 tracking-tight">
+            Recommended for You
+          </h2>
+          <p className="text-gray-500 text-sm mb-6">
+            Based on your maintain weight goal and keto preferences.
+          </p>
 
           {/* Category Filters */}
-          <section className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
+          <section className="flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide">
             {categories.map((category, i) => (
               <button
                 key={category}
                 className={`px-5 py-2 whitespace-nowrap rounded-full text-sm font-bold transition-all ${
                   i === 0
-                    ? "bg-primary text-white shadow-sm"
+                    ? "bg-[#00E676] text-white shadow-sm"
                     : "bg-white text-gray-600 border border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                 }`}
               >
                 {category}
               </button>
             ))}
-            <button className="px-5 py-2 whitespace-nowrap rounded-full text-sm font-bold bg-white text-gray-600 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 flex items-center gap-2">
-              <Settings2 className="w-4 h-4" />
-              More Filters
-            </button>
           </section>
-
-          {/* Hero Recipe */}
-          <section>
-            <RecipeCard
-              id="hero"
-              title="Zesty Avocado Power Bowl with Roasted Chickpeas"
-              image="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop"
-              time="15 Mins Prep"
-              calories="420 kcal"
-              type="Easy Difficulty"
-              dietaryTag="Recipe of the Day"
-              isLarge={true}
-            />
-          </section>
-
-          {/* Recommended Feed */}
-          <section>
-            <div className="flex items-end justify-between mb-8">
-              <div>
-                <h2 className="font-bold text-3xl text-gray-900 mb-2 tracking-tight">
-                  Recommended for You
-                </h2>
-                <p className="text-gray-500 text-sm">
-                  Based on your dietary preferences and recent activity
-                </p>
-              </div>
-            </div>
+        </div>
 
             {/* Strict 2 Column Layout Matching Reference */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -142,7 +238,7 @@ export default function Home() {
               ))}
               
               {/* Call to action card */}
-              <div className="bg-primary rounded-2xl p-8 text-white flex flex-col justify-center relative overflow-hidden group shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300 min-h-[400px]">
+              <div className="bg-[#00E676] rounded-2xl p-8 text-white flex flex-col justify-center relative overflow-hidden group shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300 min-h-[400px]">
                 <div className="absolute -top-10 -right-10 text-white/10 group-hover:text-white/20 transition-colors">
                   <Lightbulb className="w-40 h-40" />
                 </div>
@@ -155,7 +251,7 @@ export default function Home() {
                 <p className="text-white/90 text-sm mb-8 leading-relaxed max-w-sm">
                   Tell us more about your health goals and favorite cuisines for a custom-tailored weekly meal plan.
                 </p>
-                <button className="bg-white text-primary font-bold py-3.5 px-6 rounded-full mt-auto hover:bg-gray-50 transition-colors w-full shadow-sm text-center">
+                <button className="bg-white text-[#00E676] font-bold py-3.5 px-6 rounded-full mt-auto hover:bg-gray-50 transition-colors w-full shadow-sm text-center">
                   Update Diet Profile
                 </button>
               </div>
@@ -166,17 +262,8 @@ export default function Home() {
                 Load More Recipes
               </button>
             </div>
-          </section>
-        </div>
-
-        {/* Right Sidebar - Widgets */}
-        <div className="w-full xl:w-80 flex-shrink-0">
-          <div className="sticky top-28 space-y-6">
-            <NutritionWidget />
-          </div>
-        </div>
-        
       </div>
     </div>
+    </>
   );
 }

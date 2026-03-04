@@ -1,4 +1,4 @@
-import { Bookmark, Clock, Flame, Plus } from "lucide-react";
+import { Heart, Clock, Flame, Plus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -63,7 +63,7 @@ export default function RecipeCard({
 
           <div className="absolute bottom-8 right-8 flex items-center gap-3">
             <button className="bg-white/20 hover:bg-white/30 backdrop-blur-md transition-colors w-12 h-12 rounded-full flex items-center justify-center text-white">
-              <Bookmark className="w-5 h-5" />
+              <Heart className="w-5 h-5" />
             </button>
             <button className="bg-primary hover:bg-primary-dark transition-colors px-6 py-3 rounded-full text-white font-bold flex items-center gap-2 transform group-hover:scale-105 duration-200 shadow-sm">
               View Full Recipe
@@ -78,8 +78,8 @@ export default function RecipeCard({
   return (
     <Link href={`/recipe/${id}`} className="group block h-full">
       <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col h-full relative group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] group-hover:-translate-y-1 transition-all duration-300">
-        <button className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm p-2 rounded-full text-gray-400 hover:text-red-500 hover:bg-white shadow-sm transition-colors">
-          <Bookmark className="w-4 h-4" />
+        <button className="absolute top-4 right-4 z-10 bg-black/20 backdrop-blur-md p-2 rounded-full text-white hover:text-red-500 hover:bg-white shadow-sm transition-colors">
+          <Heart className="w-4 h-4" />
         </button>
 
         <div className="relative h-56 w-full overflow-hidden">
@@ -91,11 +91,13 @@ export default function RecipeCard({
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
           {/* Floating tags */}
-          <div className="absolute top-4 left-4 flex gap-2">
+          <div className="absolute bottom-4 left-4 flex gap-2 z-10">
             <span className="bg-gray-900/80 backdrop-blur-md text-white font-bold px-3 py-1 rounded-full text-[10px] tracking-wider uppercase shadow-sm">
               {dietaryTag}
             </span>
           </div>
+          {/* Subtle gradient at bottom of image for text readability */}
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/50 to-transparent" />
         </div>
 
         <div className="p-5 flex flex-col flex-1">
@@ -104,18 +106,14 @@ export default function RecipeCard({
           </h3>
           
           {/* Flat metadata line */}
-          <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500 mb-4 tracking-wide">
-            <span className="text-primary">{type}</span>
-            <span>•</span>
-            <span className="flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5" />
-              {time}
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1">
-              <Flame className="w-3.5 h-3.5" />
-              {calories}
-            </span>
+          <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-bold text-gray-400 mb-4 tracking-wider uppercase">
+            <span className="text-[#00E676]">{calories}</span>
+            <span className="text-gray-300">•</span>
+            <span>C: 45g</span>
+            <span className="text-gray-300">•</span>
+            <span>P: 32g</span>
+            <span className="text-gray-300">•</span>
+            <span>F: 18g</span>
           </div>
 
           <div className="mt-auto flex items-center justify-between gap-3 pt-4">

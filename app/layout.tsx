@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
+import RightSidebar from "@/components/RightSidebar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,11 +35,13 @@ export default function RootLayout({
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col h-full bg-gray-50/50">
-          <TopBar />
           <main className="flex-1 overflow-y-auto w-full max-w-[1600px] mx-auto">
             {children}
           </main>
         </div>
+
+        {/* Right Sidebar */}
+        <RightSidebar />
       </body>
     </html>
   );
