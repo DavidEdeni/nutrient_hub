@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #00E676;
-  --color-primary-dark: #00C853;
+  --color-primary: #00e676;
+  --color-primary-dark: #00c853;
   --color-background-offwhite: #f8fafc;
   --color-sidebar-bg: #f9fafb;
   --font-sans:
@@ -18,6 +18,23 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
+  }
+
+  body {
+    background-color: #FDF5E6 !important; /* Lighter tan for app background */
+  }
+
+  .bg-white {
+    background-color: #FAECD9 !important; /* Antique white/tan */
+  }
+
+  .bg-\[\#F8FAFC\] {
+    background-color: #F2E3CD !important; 
+  }
+
+  .bg-gray-50,
+  .bg-gray-50\/50 {
+    background-color: #F2E3CD !important;
   }
 }
 
