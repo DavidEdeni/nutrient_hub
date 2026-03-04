@@ -169,7 +169,7 @@ export default function Home() {
         <div className="flex-1 flex justify-end items-center gap-4"></div>
       </header>
 
-      <div className="p-8 pb-32 max-w-5xl relative">
+      <div className="p-8 pb-32 max-w-7xl mx-auto relative">
         <div className="space-y-8">
           {/* Validation Errors */}
           {error && (
@@ -226,7 +226,7 @@ export default function Home() {
           </div>
 
           {/* Strict 2 Column Layout Matching Reference */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {recipes.map((recipe) => (
               <RecipeCard key={recipe.id} {...recipe} />
             ))}
