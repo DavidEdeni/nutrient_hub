@@ -231,12 +231,6 @@ export default function Home() {
               <RecipeCard key={recipe.id} {...recipe} />
             ))}
           </div>
-
-          <div className="mt-12 flex justify-center">
-            <button className="px-8 py-3.5 bg-white border border-gray-200 text-gray-600 font-bold rounded-full hover:bg-gray-50 transition-colors shadow-sm w-full md:w-auto">
-              Load More Recipes
-            </button>
-          </div>
         </div>
       </div>
     </>
