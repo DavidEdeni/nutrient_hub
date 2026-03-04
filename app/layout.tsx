@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
-import TopBar from "@/components/TopBar";
-import RightSidebar from "@/components/RightSidebar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -21,11 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
       <body
         className="font-sans antialiased bg-[#F8FAFC] text-gray-900 overflow-hidden h-screen flex"
         suppressHydrationWarning
@@ -39,9 +33,6 @@ export default function RootLayout({
             {children}
           </main>
         </div>
-
-        {/* Right Sidebar */}
-        <RightSidebar />
       </body>
     </html>
   );
