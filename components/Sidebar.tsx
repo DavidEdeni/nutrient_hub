@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Compass, Heart, BookOpen, Calendar, Leaf } from "lucide-react";
+import { Compass, Heart, Leaf } from "lucide-react";
 
 export default function Sidebar() {
   return (
@@ -26,26 +26,13 @@ export default function Sidebar() {
             <Compass className="w-5 h-5" strokeWidth={2.5} />
             Discover
           </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-white rounded-2xl font-medium transition-all"
-          >
-            <Calendar className="w-5 h-5" />
-            Meal Plan
-          </Link>
+
           <Link
             href="#"
             className="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-white rounded-2xl font-medium transition-all"
           >
             <Heart className="w-5 h-5" />
             Favorites
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-white rounded-2xl font-medium transition-all"
-          >
-            <BookOpen className="w-5 h-5" />
-            Cookbooks
           </Link>
         </nav>
       </div>
